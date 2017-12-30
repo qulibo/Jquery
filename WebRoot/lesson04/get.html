@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>ajax.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+	
+	
+	
+    $(function(){
+        $("input[type='button']").click(function(){
+           var addCode=$("#addCode").val();
+           var url="http://restapi.amap.com/v3/weather/weatherInfo";
+           $.get(url,"key=4c5db4870e6e7d91b0132375cc5b590e&city="+addCode,function(msg){
+              var tq=msg.lives[0].weather;
+		      $("div").remove();
+		      if(tq=="晴"){
+		        $(document.body).append("<div><img src='yun.png'/></div>")
+		      }else{
+		        $(document.body).append("<div><img src='sun.png'/></div>")
+		      }
+           
+           });
+        });
+           
+        
+     });
+    </script>
+  </head>
+  
+  <body>
+     <input id="addCode" type="text" value=""/><input type="button" value="获取天气"/>
+     
+  </body>
+</html>
